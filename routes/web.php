@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Web Route
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -14,5 +16,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
+});
+Route::group([
+    'controller' => ShopController::class
+], function () {
+    Route::get('shops', 'shops');
+});
+
+Route::group([
+    'controller' => OrderController::class
+], function () {
+    Route::get('orders', 'orders');
 });
